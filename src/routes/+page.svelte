@@ -80,8 +80,9 @@
         (async () => {
             while (!kill) {
                 if (!target) break;
-                time_remaining = Math.floor((Date.now() - target.valueOf()) / 1000);
-                await sleep(update_delay);
+                const remaining = Date.now() - target.valueOf();
+                time_remaining = Math.floor(remaining / 1000);
+                await sleep(remaining % 1000 || 1000);
             }
         })();
         return () => (kill = true);
