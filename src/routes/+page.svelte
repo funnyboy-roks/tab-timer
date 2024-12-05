@@ -276,7 +276,11 @@
                     bind:value={countdown.s}
                 />
             </div>
-            <Button variant="secondary" onclick={start_countdown}>Start</Button>
+            {#if active === 'countdown'}
+                <Button variant="secondary" onclick={reset}>Stop</Button>
+            {:else}
+                <Button variant="secondary" onclick={start_countdown}>Start</Button>
+            {/if}
         </div>
 
         <div class="flex flex-col justify-center gap-8 text-center">
@@ -311,7 +315,11 @@
                     bind:value={alarm.s}
                 />
             </div>
-            <Button variant="secondary" onclick={start_alarm}>Start</Button>
+            {#if active === 'alarm'}
+                <Button variant="secondary" onclick={reset}>Stop</Button>
+            {:else}
+                <Button variant="secondary" onclick={start_alarm}>Start</Button>
+            {/if}
         </div>
 
         <div class="flex flex-col justify-center gap-8 text-center">
