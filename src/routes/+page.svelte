@@ -43,16 +43,32 @@
         }
     });
 
-    let countdown: { h: number | ''; m: number | ''; s: number | '' } = $state({
-        h: '',
-        m: '',
-        s: '',
-    });
-    let alarm: { h: number | ''; m: number | ''; s: number | '' } = $state({
-        h: '',
-        m: '',
-        s: '',
-    });
+    interface HMS {
+        h: number | '';
+        m: number | '';
+        s: number | '';
+    }
+
+    const local_parsed = (key: string): HMS | undefined => {
+        const item = localStorage.getItem(key);
+        if (!item) return undefined;
+        return JSON.parse(item);
+    };
+
+    let countdown: HMS = $state(
+        local_parsed('last_countdown') ?? {
+            h: '',
+            m: '',
+            s: '',
+        }
+    );
+    let alarm: HMS = $state(
+        local_parsed('last_alarm') ?? {
+            h: '',
+            m: '',
+            s: '',
+        }
+    );
 
     const sleep = (delay: number) => new Promise<void>((res) => setTimeout(() => res(), delay));
 
@@ -111,6 +127,7 @@
     const start_countdown = () => {
         reset();
         active = 'countdown';
+        localStorage.setItem('last_countdown', JSON.stringify($state.snapshot(countdown)));
         console.log(countdown);
         seconds = (countdown.h || 0) * 60 * 60 + (countdown.m || 0) * 60 + (countdown.s || 0);
         target = new Date(Date.now() + seconds * 1000);
@@ -122,6 +139,7 @@
     const start_alarm = () => {
         reset();
         active = 'alarm';
+        localStorage.setItem('last_alarm', JSON.stringify($state.snapshot(alarm)));
         console.log(alarm);
 
         let date = new Date();
