@@ -1,8 +1,12 @@
 <script lang="ts">
     import DisplayMode from '$lib/components/DisplayMode.svelte';
+    import SettingsDialog from '$lib/components/SettingsDialog.svelte';
     import * as AlertDialog from '$lib/shadcn/components/ui/alert-dialog';
+    import * as Dialog from '$lib/shadcn/components/ui/dialog';
     import { Button } from '$lib/shadcn/components/ui/button';
     import { Input } from '$lib/shadcn/components/ui/input';
+    import { SettingsIcon } from 'lucide-svelte';
+    import { type Settings, type HMS, default_settings } from '$lib/types';
 
     let timeout: undefined | (() => void);
     let time_remaining = $state(0);
@@ -23,8 +27,24 @@
         seconds: 0,
     });
 
-    const audio = new Audio('/alarm.mp3');
-    audio.loop = true;
+    const local_parsed = <T,>(key: string): T | undefined => {
+        const item = localStorage.getItem(key);
+        if (!item) return undefined;
+        return JSON.parse(item);
+    };
+
+    let settings: Settings = $state(local_parsed('settings') ?? default_settings());
+
+    $effect(() => {
+        localStorage.setItem('settings', JSON.stringify($state.snapshot(settings)));
+    });
+
+    const audio = $derived.by(() => {
+        const audio = new Audio(`/${settings.audio}.mp3`);
+        audio.volume = settings.volume;
+        audio.loop = true;
+        return audio;
+    });
 
     const show_alert = () => {
         dialog_state.active = $state.snapshot(active);
@@ -42,18 +62,6 @@
             audio.pause();
         }
     });
-
-    interface HMS {
-        h: number | '';
-        m: number | '';
-        s: number | '';
-    }
-
-    const local_parsed = (key: string): HMS | undefined => {
-        const item = localStorage.getItem(key);
-        if (!item) return undefined;
-        return JSON.parse(item);
-    };
 
     let countdown: HMS = $state(
         local_parsed('last_countdown') ?? {
@@ -208,6 +216,8 @@
         second: '2-digit',
     });
     const format_date = (date: Date | number) => dtf.format(date);
+
+    let settings_open = $state(false);
 </script>
 
 <svelte:head>
@@ -242,10 +252,20 @@
     </AlertDialog.Content>
 </AlertDialog.Root>
 
+<Dialog.Root bind:open={settings_open}>
+    <SettingsDialog bind:settings />
+</Dialog.Root>
+
 <div class="flex h-[100vh] flex-col justify-evenly">
     <div class="absolute top-2 flex w-full flex-row justify-between px-2">
-        <DisplayMode />
-        <Button variant="outline" size="icon" href="https://github.com/funnyboy-roks/tab-timer">
+        <div>
+            <Button variant="outline" onclick={() => (settings_open = true)}>
+                <SettingsIcon class="mr-2 h-4 w-4" />
+                Settings
+            </Button>
+            <DisplayMode />
+        </div>
+        <Button variant="ghost" size="icon" href="https://github.com/funnyboy-roks/tab-timer">
             <!-- https://simpleicons.org/?q=github -->
             <svg
                 class="scale-75"
