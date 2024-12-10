@@ -284,80 +284,84 @@
     <div class="flex w-full flex-row justify-evenly text-center">
         <div class="flex flex-col justify-center gap-8">
             <h1 class="text-4xl">Countdown</h1>
-            <div class="flex flex-row items-center justify-center">
-                <Input
-                    class="max-w-12"
-                    placeholder="h"
-                    type="number"
-                    min="0"
-                    oninput={update_input}
-                    bind:value={countdown.h}
-                />
-                <span class="mx-1">:</span>
-                <Input
-                    class="max-w-12"
-                    placeholder="m"
-                    type="number"
-                    min="0"
-                    max="59"
-                    oninput={update_input}
-                    bind:value={countdown.m}
-                />
-                <span class="mx-1">:</span>
-                <Input
-                    class="max-w-12"
-                    placeholder="s"
-                    type="number"
-                    min="0"
-                    max="59"
-                    oninput={update_input}
-                    bind:value={countdown.s}
-                />
-            </div>
-            {#if active === 'countdown'}
-                <Button variant="secondary" onclick={reset}>Stop</Button>
-            {:else}
-                <Button variant="secondary" onclick={start_countdown}>Start</Button>
-            {/if}
+            <form class="contents">
+                <div class="flex flex-row items-center justify-center">
+                    <Input
+                        class="max-w-12"
+                        placeholder="h"
+                        type="number"
+                        min="0"
+                        oninput={update_input}
+                        bind:value={countdown.h}
+                        />
+                        <span class="mx-1">:</span>
+                        <Input
+                            class="max-w-12"
+                            placeholder="m"
+                            type="number"
+                            min="0"
+                            max="59"
+                            oninput={update_input}
+                            bind:value={countdown.m}
+                            />
+                            <span class="mx-1">:</span>
+                            <Input
+                                class="max-w-12"
+                                placeholder="s"
+                                type="number"
+                                min="0"
+                                max="59"
+                                oninput={update_input}
+                                bind:value={countdown.s}
+                                />
+                </div>
+                {#if active === 'countdown'}
+                    <Button variant="secondary" onclick={reset}>Stop</Button>
+                {:else}
+                    <Button type="submit" variant="secondary" onclick={start_countdown}>Start</Button>
+                {/if}
+            </form>
         </div>
 
         <div class="flex flex-col justify-center gap-8 text-center">
             <h1 class="text-4xl">Alarm</h1>
-            <div class="flex flex-row items-center justify-center">
-                <Input
-                    class="max-w-12"
-                    placeholder="h"
-                    type="number"
-                    min="0"
-                    oninput={update_input}
-                    bind:value={alarm.h}
-                />
-                <span class="mx-1">:</span>
-                <Input
-                    class="max-w-12"
-                    placeholder="m"
-                    type="number"
-                    min="0"
-                    max="59"
-                    oninput={update_input}
-                    bind:value={alarm.m}
-                />
-                <span class="mx-1">:</span>
-                <Input
-                    class="max-w-12"
-                    placeholder="s"
-                    type="number"
-                    min="0"
-                    max="59"
-                    oninput={update_input}
-                    bind:value={alarm.s}
-                />
-            </div>
-            {#if active === 'alarm'}
-                <Button variant="secondary" onclick={reset}>Stop</Button>
-            {:else}
-                <Button variant="secondary" onclick={start_alarm}>Start</Button>
-            {/if}
+            <form class="contents">
+                <div class="flex flex-row items-center justify-center">
+                    <Input
+                        class="max-w-12"
+                        placeholder="h"
+                        type="number"
+                        min="0"
+                        oninput={update_input}
+                        bind:value={alarm.h}
+                        />
+                        <span class="mx-1">:</span>
+                        <Input
+                            class="max-w-12"
+                            placeholder="m"
+                            type="number"
+                            min="0"
+                            max="59"
+                            oninput={update_input}
+                            bind:value={alarm.m}
+                            />
+                            <span class="mx-1">:</span>
+                            <Input
+                                class="max-w-12"
+                                placeholder="s"
+                                type="number"
+                                min="0"
+                                max="59"
+                                oninput={update_input}
+                                bind:value={alarm.s}
+                                />
+                </div>
+                {#if active === 'alarm'}
+                    <Button variant="secondary" onclick={reset}>Stop</Button>
+                {:else}
+                    <Button type="submit" variant="secondary" onclick={start_alarm}>Start</Button>
+                {/if}
+            </form>
         </div>
 
         <div class="flex flex-col justify-center gap-8 text-center">
