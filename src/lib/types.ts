@@ -1,4 +1,4 @@
-export const sounds = ['alarm'];
+export const sounds = ['alarm', 'buzzer', 'chime', 'digital'] as const;
 export type Sound = typeof sounds[number];
 
 export interface Settings {
