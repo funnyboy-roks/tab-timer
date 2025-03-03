@@ -184,7 +184,7 @@
         n = Math.floor(n / 60);
         const m = n % 60;
         n = Math.floor(n / 60);
-        const h = n % 60;
+        const h = n;
 
         if (letters) {
             let out = '';
@@ -293,32 +293,39 @@
                         min="0"
                         oninput={update_input}
                         bind:value={countdown.h}
-                        />
-                        <span class="mx-1">:</span>
-                        <Input
-                            class="max-w-12"
-                            placeholder="m"
-                            type="number"
-                            min="0"
-                            max="59"
-                            oninput={update_input}
-                            bind:value={countdown.m}
-                            />
-                            <span class="mx-1">:</span>
-                            <Input
-                                class="max-w-12"
-                                placeholder="s"
-                                type="number"
-                                min="0"
-                                max="59"
-                                oninput={update_input}
-                                bind:value={countdown.s}
-                                />
+                    />
+                    <span class="mx-1">:</span>
+                    <Input
+                        class="max-w-12"
+                        placeholder="m"
+                        type="number"
+                        min="0"
+                        max="59"
+                        oninput={update_input}
+                        bind:value={countdown.m}
+                    />
+                    <span class="mx-1">:</span>
+                    <Input
+                        class="max-w-12"
+                        placeholder="s"
+                        type="number"
+                        min="0"
+                        max="59"
+                        oninput={update_input}
+                        bind:value={countdown.s}
+                    />
                 </div>
                 {#if active === 'countdown'}
                     <Button variant="secondary" onclick={reset}>Stop</Button>
                 {:else}
-                    <Button type="submit" variant="secondary" onclick={start_countdown}>Start</Button>
+                    <Button
+                        type="submit"
+                        variant="secondary"
+                        disabled={!countdown.h && !countdown.m && !countdown.s}
+                        onclick={start_countdown}
+                    >
+                        Start
+                    </Button>
                 {/if}
             </form>
         </div>
@@ -334,32 +341,40 @@
                         min="0"
                         oninput={update_input}
                         bind:value={alarm.h}
-                        />
-                        <span class="mx-1">:</span>
-                        <Input
-                            class="max-w-12"
-                            placeholder="m"
-                            type="number"
-                            min="0"
-                            max="59"
-                            oninput={update_input}
-                            bind:value={alarm.m}
-                            />
-                            <span class="mx-1">:</span>
-                            <Input
-                                class="max-w-12"
-                                placeholder="s"
-                                type="number"
-                                min="0"
-                                max="59"
-                                oninput={update_input}
-                                bind:value={alarm.s}
-                                />
+                    />
+                    <span class="mx-1">:</span>
+                    <Input
+                        class="max-w-12"
+                        placeholder="m"
+                        type="number"
+                        min="0"
+                        max="59"
+                        oninput={update_input}
+                        bind:value={alarm.m}
+                    />
+                    <span class="mx-1">:</span>
+                    <Input
+                        class="max-w-12"
+                        placeholder="s"
+                        type="number"
+                        min="0"
+                        max="59"
+                        oninput={update_input}
+                        bind:value={alarm.s}
+                    />
                 </div>
                 {#if active === 'alarm'}
                     <Button variant="secondary" onclick={reset}>Stop</Button>
                 {:else}
-                    <Button type="submit" variant="secondary" onclick={start_alarm}>Start</Button>
+                    <!-- Disabled prop here until #9 is fixed. -->
+                    <Button
+                        type="submit"
+                        variant="secondary"
+                        disabled={!alarm.h || !alarm.m || !alarm.s}
+                        onclick={start_alarm}
+                    >
+                        Start
+                    </Button>
                 {/if}
             </form>
         </div>
