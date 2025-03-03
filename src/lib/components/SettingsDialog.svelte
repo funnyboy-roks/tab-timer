@@ -71,7 +71,7 @@
     <Dialog.Description>
         <div class="flex flex-col space-y-6">
             <div class="flex w-full items-center space-x-4">
-                <Label for="sound" class="text-nowrap min-w-24">Alarm Sound</Label>
+                <Label for="sound" class="min-w-24 text-nowrap">Alarm Sound</Label>
                 <select
                     id="sound"
                     class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
@@ -83,7 +83,7 @@
                         </option>
                     {/each}
                 </select>
-                <Button variant="ghost" size="icon" class="p-2 shrink-0" onclick={toggle_sound}>
+                <Button variant="ghost" size="icon" class="shrink-0 p-2" on:click={toggle_sound}>
                     {#if playing}
                         <PauseIcon class="h-4 w-4" />
                     {:else}
@@ -92,7 +92,7 @@
                 </Button>
             </div>
             <div class="flex w-full items-center space-x-4">
-                <Label for="volume" class="text-nowrap min-w-24">Alarm Volume</Label>
+                <Label for="volume" class="min-w-24 text-nowrap">Alarm Volume</Label>
                 <Slider id="volume" bind:value={x} max={1} min={0} step={0.01} />
             </div>
         </div>

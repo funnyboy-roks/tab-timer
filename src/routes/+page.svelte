@@ -259,7 +259,7 @@
 <div class="flex h-[100vh] flex-col justify-evenly">
     <div class="absolute top-2 flex w-full flex-row justify-between px-2">
         <div class="flex flex-row items-center gap-2">
-            <Button variant="outline" onclick={() => (settings_open = true)}>
+            <Button variant="outline" on:click={() => (settings_open = true)}>
                 <SettingsIcon class="mr-2 h-4 w-4" />
                 Settings
             </Button>
@@ -316,13 +316,13 @@
                     />
                 </div>
                 {#if active === 'countdown'}
-                    <Button variant="secondary" onclick={reset}>Stop</Button>
+                    <Button variant="secondary" on:click={reset}>Stop</Button>
                 {:else}
                     <Button
                         type="submit"
                         variant="secondary"
                         disabled={!countdown.h && !countdown.m && !countdown.s}
-                        onclick={start_countdown}
+                        on:click={start_countdown}
                     >
                         Start
                     </Button>
@@ -361,9 +361,9 @@
                     />
                 </div>
                 {#if active === 'alarm'}
-                    <Button variant="secondary" onclick={reset}>Stop</Button>
+                    <Button variant="secondary" on:click={reset}>Stop</Button>
                 {:else}
-                    <Button type="submit" variant="secondary" onclick={start_alarm}>Start</Button>
+                    <Button type="submit" variant="secondary" on:click={start_alarm}>Start</Button>
                 {/if}
             </form>
         </div>
@@ -371,9 +371,9 @@
         <div class="flex flex-col justify-center gap-8 text-center">
             <h1 class="text-4xl">Stopwatch</h1>
             {#if active === 'stopwatch'}
-                <Button variant="secondary" onclick={reset}>Stop</Button>
+                <Button variant="secondary" on:click={reset}>Stop</Button>
             {:else}
-                <Button variant="secondary" onclick={start_stopwatch}>Start</Button>
+                <Button variant="secondary" on:click={start_stopwatch}>Start</Button>
             {/if}
         </div>
     </div>
