@@ -370,7 +370,7 @@
                     <Button
                         type="submit"
                         variant="secondary"
-                        disabled={!alarm.h || !alarm.m || !alarm.s}
+                        disabled={alarm.h === '' || alarm.m === '' || alarm.s === ''}
                         onclick={start_alarm}
                     >
                         Start
