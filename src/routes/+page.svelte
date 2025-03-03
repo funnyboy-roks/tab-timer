@@ -258,7 +258,7 @@
 
 <div class="flex h-[100vh] flex-col justify-evenly">
     <div class="absolute top-2 flex w-full flex-row justify-between px-2">
-        <div>
+        <div class="flex flex-row items-center gap-2">
             <Button variant="outline" onclick={() => (settings_open = true)}>
                 <SettingsIcon class="mr-2 h-4 w-4" />
                 Settings
