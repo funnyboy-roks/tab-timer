@@ -115,13 +115,13 @@
     const clamp = (n: number, min: number, max: number) => (n < min ? min : n > max ? max : n);
 
     const update_input = () => {
-        if (countdown.h) countdown.h = clamp(countdown.h, 0, Infinity);
-        if (countdown.m) countdown.m = clamp(countdown.m, 0, 59);
-        if (countdown.s) countdown.s = clamp(countdown.s, 0, 59);
+        if (countdown.h) countdown.h = clamp(+countdown.h, 0, Infinity);
+        if (countdown.m) countdown.m = clamp(+countdown.m, 0, 59);
+        if (countdown.s) countdown.s = clamp(+countdown.s, 0, 59);
 
-        if (alarm.h) alarm.h = clamp(alarm.h, 0, 23);
-        if (alarm.m) alarm.m = clamp(alarm.m, 0, 59);
-        if (alarm.s) alarm.s = clamp(alarm.s, 0, 59);
+        if (alarm.h) alarm.h = clamp(+alarm.h, 0, 23);
+        if (alarm.m) alarm.m = clamp(+alarm.m, 0, 59);
+        if (alarm.s) alarm.s = clamp(+alarm.s, 0, 59);
     };
 
     const reset = () => {
@@ -337,7 +337,6 @@
                     <Input
                         class="max-w-12"
                         placeholder="h"
-                        type="number"
                         min="0"
                         oninput={update_input}
                         bind:value={alarm.h}
@@ -346,7 +345,6 @@
                     <Input
                         class="max-w-12"
                         placeholder="m"
-                        type="number"
                         min="0"
                         max="59"
                         oninput={update_input}
@@ -356,7 +354,6 @@
                     <Input
                         class="max-w-12"
                         placeholder="s"
-                        type="number"
                         min="0"
                         max="59"
                         oninput={update_input}
@@ -366,15 +363,7 @@
                 {#if active === 'alarm'}
                     <Button variant="secondary" onclick={reset}>Stop</Button>
                 {:else}
-                    <!-- Disabled prop here until #9 is fixed. -->
-                    <Button
-                        type="submit"
-                        variant="secondary"
-                        disabled={alarm.h === '' || alarm.m === '' || alarm.s === ''}
-                        onclick={start_alarm}
-                    >
-                        Start
-                    </Button>
+                    <Button type="submit" variant="secondary" onclick={start_alarm}>Start</Button>
                 {/if}
             </form>
         </div>
