@@ -152,8 +152,8 @@
 
         let date = new Date();
 
-        if(!alarm.m)alarm.m=0
-        if(!alarm.s)alarm.s=0
+        if (!alarm.m) alarm.m = 0;
+        if (!alarm.s) alarm.s = 0;
 
         date.setHours(alarm.h || 0);
         date.setMinutes(alarm.m);
