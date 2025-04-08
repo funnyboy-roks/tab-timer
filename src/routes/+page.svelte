@@ -292,6 +292,7 @@
                         type="number"
                         min="0"
                         oninput={update_input}
+                        disabled={!!active}
                         bind:value={countdown.h}
                     />
                     <span class="mx-1">:</span>
@@ -301,6 +302,7 @@
                         type="number"
                         min="0"
                         max="59"
+                        disabled={!!active}
                         oninput={update_input}
                         bind:value={countdown.m}
                     />
@@ -311,6 +313,7 @@
                         type="number"
                         min="0"
                         max="59"
+                        disabled={!!active}
                         oninput={update_input}
                         bind:value={countdown.s}
                     />
@@ -338,6 +341,7 @@
                         class="max-w-12"
                         placeholder="h"
                         min="0"
+                        disabled={!!active}
                         oninput={update_input}
                         bind:value={alarm.h}
                     />
@@ -347,6 +351,7 @@
                         placeholder="m"
                         min="0"
                         max="59"
+                        disabled={!!active}
                         oninput={update_input}
                         bind:value={alarm.m}
                     />
@@ -356,6 +361,7 @@
                         placeholder="s"
                         min="0"
                         max="59"
+                        disabled={!!active}
                         oninput={update_input}
                         bind:value={alarm.s}
                     />
