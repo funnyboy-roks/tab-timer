@@ -292,6 +292,7 @@
                         type="number"
                         min="0"
                         oninput={update_input}
+                        disabled={!!active}
                         bind:value={countdown.h}
                     />
                     <span class="mx-1">:</span>
@@ -302,6 +303,7 @@
                         min="0"
                         max="59"
                         oninput={update_input}
+                        disabled={!!active}
                         bind:value={countdown.m}
                     />
                     <span class="mx-1">:</span>
@@ -312,6 +314,7 @@
                         min="0"
                         max="59"
                         oninput={update_input}
+                        disabled={!!active}
                         bind:value={countdown.s}
                     />
                 </div>
@@ -339,6 +342,7 @@
                         placeholder="h"
                         min="0"
                         oninput={update_input}
+                        disabled={!!active}
                         bind:value={alarm.h}
                     />
                     <span class="mx-1">:</span>
@@ -347,6 +351,7 @@
                         placeholder="m"
                         min="0"
                         max="59"
+                        disabled={!!active}
                         oninput={update_input}
                         bind:value={alarm.m}
                     />
@@ -357,6 +362,7 @@
                         min="0"
                         max="59"
                         oninput={update_input}
+                        disabled={!!active}
                         bind:value={alarm.s}
                     />
                 </div>
