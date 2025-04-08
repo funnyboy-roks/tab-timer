@@ -151,9 +151,13 @@
         console.log(alarm);
 
         let date = new Date();
+
+        if(!alarm.m)alarm.m=0
+        if(!alarm.s)alarm.s=0
+
         date.setHours(alarm.h || 0);
-        date.setMinutes(alarm.m || 0);
-        date.setSeconds(alarm.s || 0);
+        date.setMinutes(alarm.m);
+        date.setSeconds(alarm.s);
 
         // if time set after, then do the future
         if (date.valueOf() < Date.now()) {
