@@ -253,7 +253,7 @@
 </AlertDialog.Root>
 
 <Dialog.Root bind:open={settings_open}>
-    <SettingsDialog bind:settings />
+    <SettingsDialog bind:settings bind:open={settings_open} />
 </Dialog.Root>
 
 <div class="flex h-[100vh] flex-col justify-evenly">
