@@ -151,9 +151,13 @@
         console.log(alarm);
 
         let date = new Date();
+
+        if (!alarm.m) alarm.m = 0;
+        if (!alarm.s) alarm.s = 0;
+
         date.setHours(alarm.h || 0);
-        date.setMinutes(alarm.m || 0);
-        date.setSeconds(alarm.s || 0);
+        date.setMinutes(alarm.m);
+        date.setSeconds(alarm.s);
 
         // if time set after, then do the future
         if (date.valueOf() < Date.now()) {
@@ -302,6 +306,7 @@
                         type="number"
                         min="0"
                         max="59"
+                        disabled={!!active}
                         oninput={update_input}
                         disabled={!!active}
                         bind:value={countdown.m}
@@ -313,6 +318,7 @@
                         type="number"
                         min="0"
                         max="59"
+                        disabled={!!active}
                         oninput={update_input}
                         disabled={!!active}
                         bind:value={countdown.s}
@@ -341,6 +347,7 @@
                         class="max-w-12"
                         placeholder="h"
                         min="0"
+                        disabled={!!active}
                         oninput={update_input}
                         disabled={!!active}
                         bind:value={alarm.h}
@@ -361,6 +368,7 @@
                         placeholder="s"
                         min="0"
                         max="59"
+                        disabled={!!active}
                         oninput={update_input}
                         disabled={!!active}
                         bind:value={alarm.s}
