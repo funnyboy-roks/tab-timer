@@ -153,7 +153,8 @@
 
         if (!alarm.m) alarm.m = 0;
         if (!alarm.s) alarm.s = 0;
-        if (!alarm.h) alarm.h = date.getMinutes() > alarm.m ? date.getHours() + 1 : date.getHours();
+        if (alarm.h === '')
+            alarm.h = date.getMinutes() > alarm.m ? date.getHours() + 1 : date.getHours();
 
         date.setHours(alarm.h);
         date.setMinutes(alarm.m);
