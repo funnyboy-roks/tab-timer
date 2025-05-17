@@ -8,7 +8,8 @@
     import { PauseIcon, PlayIcon } from 'lucide-svelte';
     import { onDestroy } from 'svelte';
 
-    let { settings = $bindable(), open = $bindable() }: { settings: Settings; open: boolean } = $props();
+    let { settings = $bindable(), open = $bindable() }: { settings: Settings; open: boolean } =
+        $props();
 
     let x = $state([settings.volume]);
     $effect(() => {
@@ -50,7 +51,7 @@
             playing = false;
         }
     });
-    
+
     const toggle_sound = () => {
         if (playing) {
             audio.pause();
